@@ -11,3 +11,8 @@ class Solution {
         return ans;
     }
 }
+Sample Input:
+nums = [2,5,1,3,4,7]
+n = 3
+Sample output:
+[2,3,5,4,1,7]
