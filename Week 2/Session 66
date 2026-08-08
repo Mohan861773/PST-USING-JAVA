@@ -1,0 +1,91 @@
+Java Hashset
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();
+        sc.nextLine();
+
+        HashSet<String> set = new HashSet<>();
+
+        for (int i = 0; i < t; i++) {
+            String a = sc.next();
+            String b = sc.next();
+
+            // Store the pair as one string
+            set.add(a + " " + b);
+
+            System.out.println(set.size());
+        }
+
+        sc.close();
+    }
+}
+Input:
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();
+        sc.nextLine();
+
+        HashSet<String> set = new HashSet<>();
+
+        for (int i = 0; i < t; i++) {
+            String a = sc.next();
+            String b = sc.next();
+
+            // Store the pair as one string
+            set.add(a + " " + b);
+
+            System.out.println(set.size());
+        }
+
+        sc.close();
+    }
+}
+Input:import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();
+        sc.nextLine();
+
+        HashSet<String> set = new HashSet<>();
+
+        for (int i = 0; i < t; i++) {
+            String a = sc.next();
+            String b = sc.next();
+
+            // Store the pair as one string
+            set.add(a + " " + b);
+
+            System.out.println(set.size());
+        }
+
+        sc.close();
+    }
+}
+INPUT:5
+john tom
+john mary
+john tom
+mary john
+john mary
+OUTPUT:1
+2
+2
+3
+3
