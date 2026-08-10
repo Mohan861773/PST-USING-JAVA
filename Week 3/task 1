@@ -17,3 +17,5 @@ class Solution {
         return result;
     }
 }
+Input: date = "2019-01-09"
+Output: 9
