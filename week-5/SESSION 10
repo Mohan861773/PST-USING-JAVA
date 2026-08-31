@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+
+public class Main {
+
+    static ArrayList<Integer> search(String text, String pattern) {
+
+        ArrayList<Integer> result = new ArrayList<>();
+
+        int n = text.length();
+        int m = pattern.length();
+
+        // Check every possible starting position
+        for (int i = 0; i <= n - m; i++) {
+
+            int j;
+
+            // Compare pattern with text
+            for (j = 0; j < m; j++) {
+
+                if (text.charAt(i + j) != pattern.charAt(j)) {
+                    break;
+                }
+            }
+
+            // Pattern completely matched
+            if (j == m) {
+                result.add(i);
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        String text = "aabaacaadaabaaba";
+        String pattern = "aaba";
+
+        ArrayList<Integer> result = search(text, pattern);
+
+        System.out.println("Pattern found at indices:");
+
+        for (int index : result) {
+            System.out.print(index + " ");
+        }
+    }
+}
+INPUT:
+Enter text: AABAACAADAABAABA
+Enter pattern: AABA
+OUTPUT:
+Pattern found at index: 0
+Pattern found at index: 9
+Pattern found at index: 12
