@@ -1,0 +1,33 @@
+public class Solution {
+
+    public static int birthday(int[] s, int d, int m) {
+        int count = 0;
+        int sum = 0;
+
+        // First window of size m
+        for (int i = 0; i < m; i++) {
+            sum += s[i];
+        }
+
+        if (sum == d) {
+            count++;
+        }
+
+        // Slide the window
+        for (int i = m; i < s.length; i++) {
+            sum = sum - s[i - m] + s[i];
+
+            if (sum == d) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
+INPUT:
+6
+1 1 1 1 1 1
+3 2
+OUTPUT:
+0
