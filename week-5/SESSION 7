@@ -1,0 +1,27 @@
+public class Solution {
+
+    public static int alternatingCharacters(String s) {
+        int deletions = 0;
+
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                deletions++;
+            }
+        }
+
+        return deletions;
+    }
+}
+INPUT:
+5
+AAAA
+BBBBB
+ABABABAB
+BABABA
+AAABBB
+OUTPUT:
+3
+4
+0
+0
+4
