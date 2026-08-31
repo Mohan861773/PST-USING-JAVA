@@ -1,0 +1,38 @@
+public class Solution {
+
+    public static List<Integer> maxSubarray(List<Integer> arr) {
+        int maxSub = arr.get(0);
+        int current = arr.get(0);
+
+        int maxSeq = arr.get(0);
+
+        for (int i = 1; i < arr.size(); i++) {
+            int x = arr.get(i);
+
+            // Maximum contiguous subarray
+            current = Math.max(x, current + x);
+            maxSub = Math.max(maxSub, current);
+
+            // Maximum non-contiguous subsequence
+            if (x > 0) {
+                maxSeq += x;
+            }
+        }
+
+        // If all numbers are negative
+        if (maxSeq <= 0) {
+            maxSeq = maxSub;
+        }
+
+        return Arrays.asList(maxSub, maxSeq);
+    }
+}
+INPUT:
+2
+4
+1 2 3 4
+6
+2 -1 2 3 4 -5
+OUTPUT:
+10 10
+10 11
