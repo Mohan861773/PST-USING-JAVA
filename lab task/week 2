@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class StreamAnalyticsEngine {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int count = 0;
+        int sum = 0;
+
+        System.out.println("Enter numbers (-1 to stop):");
+
+        while (true) {
+            int value = sc.nextInt();
+
+            if (value == -1) {
+                break;
+            }
+
+            sum += value;
+            count++;
+
+            double average = (double) sum / count;
+
+            System.out.println("Current Sum: " + sum);
+            System.out.println("Current Average: " + average);
+        }
+
+        System.out.println("Stream Ended");
+        sc.close();
+    }
+}
+Enter numbers (-1 to stop):
+10
+Current Sum: 10
+Current Average: 10.0
+20
+Current Sum: 30
+Current Average: 15.0
+30
+Current Sum: 60
+Current Average: 20.0
+-1
+Stream Ended
