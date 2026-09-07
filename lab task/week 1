@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class SalaryTransformationSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter current salary: ");
+        double salary = sc.nextDouble();
+
+        double newSalary;
+
+        // 10% salary hike
+        newSalary = salary + (salary * 0.10);
+
+        System.out.println("Old Salary: " + salary);
+        System.out.println("New Salary: " + newSalary);
+
+        sc.close();
+    }
+}
+Enter current salary: 30000
+Old Salary: 30000.0
+New Salary: 33000.0
