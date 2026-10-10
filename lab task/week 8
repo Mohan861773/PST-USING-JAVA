@@ -1,0 +1,94 @@
+
+import java.util.*;
+
+public class Main {
+    static Map<String, Map<String, Integer>> graph = new HashMap<>();
+
+    static void addRoad(String a, String b, int time) {
+        graph.putIfAbsent(a, new HashMap<>());
+        graph.putIfAbsent(b, new HashMap<>());
+        graph.get(a).put(b, time);
+        graph.get(b).put(a, time);
+    }
+
+    static void findShortestRoute(String start, String end) {
+        Map<String, Integer> dist = new HashMap<>();
+        Map<String, String> parent = new HashMap<>();
+        PriorityQueue<String> pq = new PriorityQueue<>(
+            Comparator.comparingInt(n -> dist.getOrDefault(n, Integer.MAX_VALUE))
+        );
+
+        for (String node : graph.keySet())
+            dist.put(node, Integer.MAX_VALUE);
+
+        if (!graph.containsKey(start) || !graph.containsKey(end)) {
+            System.out.println("Location not found.");
+            return;
+        }
+
+        dist.put(start, 0);
+        pq.add(start);
+
+        while (!pq.isEmpty()) {
+            String current = pq.poll();
+
+            for (Map.Entry<String, Integer> road :
+                    graph.get(current).entrySet()) {
+                String next = road.getKey();
+                int newTime = dist.get(current) + road.getValue();
+
+                if (newTime < dist.get(next)) {
+                    dist.put(next, newTime);
+                    parent.put(next, current);
+                    pq.remove(next);
+                    pq.add(next);
+                }
+            }
+        }
+
+        if (dist.get(end) == Integer.MAX_VALUE) {
+            System.out.println("No route available.");
+            return;
+        }
+
+        List<String> route = new ArrayList<>();
+        String node = end;
+
+        while (node != null) {
+            route.add(node);
+            node = parent.get(node);
+        }
+
+        Collections.reverse(route);
+        System.out.println("Best Route: " + String.join(" -> ", route));
+        System.out.println("Estimated Travel Time: "
+                + dist.get(end) + " minutes");
+    }
+
+    public static void main(String[] args) {
+        addRoad("A", "B", 10);
+        addRoad("A", "C", 5);
+        addRoad("B", "D", 8);
+        addRoad("C", "D", 4);
+        addRoad("C", "E", 7);
+        addRoad("D", "E", 3);
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Locations: A, B, C, D, E");
+        System.out.print("Enter starting location: ");
+        String start = sc.nextLine().trim().toUpperCase();
+
+        System.out.print("Enter destination: ");
+        String end = sc.nextLine().trim().toUpperCase();
+
+        findShortestRoute(start, end);
+        sc.close();
+    }
+}
+Locations: A, B, C, D, E
+Enter starting location: A
+Enter destination: E
+
+Best Route: A -> C -> D -> E
+Estimated Travel Time: 12 minutes
