@@ -1,0 +1,107 @@
+
+import java.util.Scanner;
+
+class Ride {
+    String passenger;
+    String source;
+    String destination;
+    double distance;
+    double fare;
+
+    void bookRide(String passenger, String source,
+                  String destination, double distance) {
+        this.passenger = passenger;
+        this.source = source;
+        this.destination = destination;
+        this.distance = distance;
+        this.fare = distance * 15;
+
+        System.out.println("\nRide booked successfully!");
+    }
+
+    void displayRide() {
+        System.out.println("\n--- Ride Details ---");
+        System.out.println("Passenger: " + passenger);
+        System.out.println("Source: " + source);
+        System.out.println("Destination: " + destination);
+        System.out.println("Distance: " + distance + " km");
+        System.out.println("Total Fare: Rs. " + fare);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Ride ride = new Ride();
+        int choice;
+        boolean booked = false;
+
+        do {
+            System.out.println("\n--- Ride Sharing Platform ---");
+            System.out.println("1. Book Ride");
+            System.out.println("2. View Ride Details");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter passenger name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Enter source: ");
+                    String source = sc.nextLine();
+
+                    System.out.print("Enter destination: ");
+                    String destination = sc.nextLine();
+
+                    System.out.print("Enter distance (km): ");
+                    double distance = sc.nextDouble();
+
+                    if (distance <= 0) {
+                        System.out.println("Invalid distance.");
+                    } else {
+                        ride.bookRide(name, source, destination, distance);
+                        booked = true;
+                    }
+                    break;
+
+                case 2:
+                    if (booked) {
+                        ride.displayRide();
+                    } else {
+                        System.out.println("No ride booked yet.");
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Thank you for using the platform!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        } while (choice != 3);
+
+        sc.close();
+    }
+}
+--- Ride Sharing Platform ---
+1. Book Ride
+2. View Ride Details
+3. Exit
+Enter your choice: 1
+Enter passenger name: Ravi
+Enter source: Chennai
+Enter destination: Velachery
+Enter distance (km): 10
+
+Ride booked successfully!
+
+--- Ride Details ---
+Passenger: Ravi
+Source: Chennai
+Destination: Velachery
+Distance: 10.0 km
+Total Fare: Rs. 150.0
