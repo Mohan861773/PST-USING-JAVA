@@ -1,0 +1,27 @@
+class Cycle {
+    String define() {
+        return "a cycle with pedals.";
+    }
+}
+
+class Motorcycle extends Cycle {
+    @Override
+    String define() {
+        return "a cycle with an engine.";
+    }
+
+    Motorcycle() {
+        System.out.println("Hello I am a motorcycle, I am " + define());
+        String temp = super.define();
+        System.out.println("My ancestor is a cycle who is " + temp);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Motorcycle motorcycle = new Motorcycle();
+    }
+}
+OUTPUT:
+Hello I am a motorcycle, I am a cycle with an engine.
+My ancestor is a cycle who is a cycle with pedals.
