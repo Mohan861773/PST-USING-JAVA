@@ -1,17 +1,19 @@
-3.Find highest Altitude
 class Solution {
-    public int largestAltitude(int[] gain) {
-        int currentAltitude = 0;
-        int maxAltitude = 0;
+    public int removeElement(int[] nums, int val) {
 
-        for (int g : gain) {
-            currentAltitude += g;
-            maxAltitude = Math.max(maxAltitude, currentAltitude);
+        int k = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+
+            if (nums[i] != val) {
+                nums[k] = nums[i];
+                k++;
+            }
         }
 
-        return maxAltitude;
+        return k;
     }
 }
-INPUT:
-gain = [-5, 1, 5, 0, -7]
-OUTPUT:1
+Input: nums = [3,2,2,3], val = 3
+
+Output: 2
