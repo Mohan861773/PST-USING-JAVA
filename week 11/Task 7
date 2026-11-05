@@ -1,0 +1,30 @@
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int data) {
+        this.data = data;
+    }
+}
+
+public class Solution {
+
+    public static void preOrder(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        System.out.print(root.data + " ");
+
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+}
+        1
+       / \
+      2   3
+     / \
+    4   5
+Output:
+1 2 4 5 3
