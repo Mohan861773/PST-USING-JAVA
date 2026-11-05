@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        TreeSet<Integer> marks = new TreeSet<>();
+
+        for (int i = 0; i < n; i++) {
+            marks.add(sc.nextInt());
+        }
+
+        System.out.println(marks);
+
+        sc.close();
+    }
+}
+Sample Input
+7
+80 90 70 80 60 90 85
+
+
+Sample Output
+[60, 70, 80, 85, 90]
