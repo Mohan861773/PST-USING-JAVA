@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Stack<String> history = new Stack<>();
+
+        history.push("Google");
+        history.push("YouTube");
+        history.push("Facebook");
+        history.push("Instagram");
+
+        System.out.println("Browser History:");
+        System.out.println(history);
+
+        System.out.println("Back Button:");
+        System.out.println(history.pop());
+
+        System.out.println("Updated History:");
+        System.out.println(history);
+
+        sc.close();
+    }
+}
+Sample Input
+No input required
+
+
+Sample Output
+Browser History:
+[Google, YouTube, Facebook, Instagram]
+Back Button:
+Instagram
+Updated History:
+[Google, YouTube, Facebook]
