@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<Integer> marks = new ArrayList<>();
+
+        System.out.println("Enter number of marks:");
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            marks.add(sc.nextInt());
+        }
+
+        System.out.println("Student Marks:");
+
+        for (int m : marks) {
+            System.out.println(m);
+        }
+
+        sc.close();
+    }
+}
+Sample Input
+5
+80
+90
+75
+85
+95
+
+
+Sample Output
+Student Marks:
+80
+90
+75
+85
+95
