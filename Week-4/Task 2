@@ -34,3 +34,14 @@ public class Main {
         sc.close();
     }
 }
+Input:
+3
+gaga
+abcde
+rotor
+
+
+Output:
+YES
+NO
+YES
