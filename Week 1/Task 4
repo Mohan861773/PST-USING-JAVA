@@ -1,31 +1,49 @@
-import java.util.Scanner;
-public class max{
-    public static void main(String[] args){
-        Scanner sc =new Scanner(System.in);
-        System.out.println("Enter size of array:");
-        int n=sc.nextInt();
-        
-        int[] arr=new int[n];
-        System.out.println("Enter the elements:");
-        for(int i=0;i<n;i++){
-            arr[i]=sc.nextInt();
-        }
-        int small=arr[0];
-        for(int i=1;i<n;i++){
-            if(small>arr[i]){
-                small=arr[i];
-            }
-        }
-        System.out.println("smallest element is "+ small);
+import java.util.*;
+
+class Player {
+    String name;
+    int score;
+
+    Player(String name, int score) {
+        this.name = name;
+        this.score = score;
     }
-    
 }
 
-OUTPUT:Enter size of array:
-4
-Enter the elements:
-2
-9
-1
-90
-smallest element is 1
+class Checker implements Comparator<Player> {
+
+    public int compare(Player a, Player b) {
+
+        if (a.score != b.score) {
+            return Integer.compare(b.score, a.score);
+        }
+
+        return a.name.compareTo(b.name);
+    }
+}
+
+public class Solution {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        Player[] players = new Player[n];
+
+        for (int i = 0; i < n; i++) {
+            String name = sc.next();
+            int score = sc.nextInt();
+
+            players[i] = new Player(name, score);
+        }
+
+        Arrays.sort(players, new Checker());
+
+        for (Player p : players) {
+            System.out.println(p.name + " " + p.score);
+        }
+
+        sc.close();
+    }
+}
