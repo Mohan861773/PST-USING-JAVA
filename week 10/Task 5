@@ -1,0 +1,86 @@
+import java.util.*;
+
+class Node {
+    String song;
+    Node next;
+
+    Node(String song) {
+        this.song = song;
+        next = null;
+    }
+}
+
+class Playlist {
+    Node head;
+
+    void addSong(String song) {
+        Node newNode = new Node(song);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+
+            temp.next = newNode;
+        }
+    }
+
+    void removeSong(String song) {
+        if (head == null) return;
+
+        if (head.song.equals(song)) {
+            head = head.next;
+            return;
+        }
+
+        Node temp = head;
+
+        while (temp.next != null &&
+               !temp.next.song.equals(song)) {
+            temp = temp.next;
+        }
+
+        if (temp.next != null) {
+            temp.next = temp.next.next;
+        }
+    }
+
+    void display() {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.song + " ");
+            temp = temp.next;
+        }
+
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Playlist p = new Playlist();
+
+        p.addSong("Song1");
+        p.addSong("Song2");
+        p.addSong("Song3");
+
+        System.out.println("Playlist:");
+        p.display();
+
+        p.removeSong("Song2");
+
+        System.out.println("After Removing:");
+        p.display();
+    }
+}
+Sample Output
+Playlist:
+Song1 Song2 Song3
+After Removing:
+Song1 Song3
