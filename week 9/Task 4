@@ -1,0 +1,46 @@
+interface Payment {
+    void pay(double amount);
+
+    default double getFeeRate() {
+        return 0;
+    }
+}
+
+class CreditCardPayment implements Payment {
+    public void pay(double amount) {
+    }
+
+    public double getFeeRate() {
+        return 0.02;
+    }
+}
+
+class UPIPayment implements Payment {
+    public void pay(double amount) {
+    }
+
+    public double getFeeRate() {
+        return 0.01;
+    }
+}
+
+class NetBankingPayment implements Payment {
+    public void pay(double amount) {
+    }
+
+    public double getFeeRate() {
+        return 0.015;
+    }
+}
+
+abstract class PaymentProcessor {
+    abstract double processPayment(Payment payment, double amount);
+}
+
+class OnlinePaymentProcessor extends PaymentProcessor {
+
+    double processPayment(Payment payment, double amount) {
+        payment.pay(amount);
+        return amount + (amount * payment.getFeeRate());
+    }
+}
