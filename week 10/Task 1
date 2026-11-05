@@ -1,0 +1,67 @@
+import java.util.*;
+
+class Product {
+    int id;
+    String name;
+    double price;
+
+    Product(int id, String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<Product> products = new ArrayList<>();
+        HashMap<Integer, Product> map = new HashMap<>();
+
+        PriorityQueue<Integer> orders =
+                new PriorityQueue<>();
+
+        products.add(new Product(101, "Laptop", 50000));
+        products.add(new Product(102, "Mobile", 20000));
+        products.add(new Product(103, "Tablet", 15000));
+
+        for (Product p : products) {
+            map.put(p.id, p);
+        }
+
+        System.out.println("Enter Product ID:");
+        int id = sc.nextInt();
+
+        if (map.containsKey(id)) {
+            Product p = map.get(id);
+            System.out.println(p.name + " " + p.price);
+        } else {
+            System.out.println("Product Not Found");
+        }
+
+        orders.add(3);
+        orders.add(1);
+        orders.add(2);
+
+        System.out.println("Order Processing:");
+
+        while (!orders.isEmpty()) {
+            System.out.println(orders.poll());
+        }
+
+        sc.close();
+    }
+}
+Sample Input
+101
+
+
+Sample Output
+Enter Product ID:
+Laptop 50000.0
+Order Processing:
+1
+2
+3
