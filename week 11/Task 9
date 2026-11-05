@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            int bird = sc.nextInt();
+
+            map.put(bird, map.getOrDefault(bird, 0) + 1);
+        }
+
+        int maxCount = 0;
+        int result = Integer.MAX_VALUE;
+
+        for (int bird : map.keySet()) {
+            int count = map.get(bird);
+
+            if (count > maxCount) {
+                maxCount = count;
+                result = bird;
+            } 
+            else if (count == maxCount && bird < result) {
+                result = bird;
+            }
+        }
+
+        System.out.println(result);
+    }
+}
+Sample Input:
+6
+1 4 4 4 5 3
+
+
+Sample Output:
+4
