@@ -1,0 +1,118 @@
+import java.util.*;
+
+class Product {
+    int id;
+    String name;
+    int stock;
+    double price;
+
+    Product(int id, String name, int stock, double price) {
+        this.id = id;
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
+    }
+
+    public String toString() {
+        return id + " " + name + " " + stock + " " + price;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        HashMap<Integer, Product> map = new HashMap<>();
+
+        int n = sc.nextInt();
+
+        // Store product details
+        for (int i = 0; i < n; i++) {
+            int id = sc.nextInt();
+            String name = sc.next();
+            int stock = sc.nextInt();
+            double price = sc.nextDouble();
+
+            map.put(id, new Product(id, name, stock, price));
+        }
+
+        // Update stock after sales
+        int sales = sc.nextInt();
+
+        for (int i = 0; i < sales; i++) {
+            int id = sc.nextInt();
+            int quantity = sc.nextInt();
+
+            if (map.containsKey(id)) {
+                Product p = map.get(id);
+
+                if (quantity <= p.stock) {
+                    p.stock -= quantity;
+                } else {
+                    System.out.println("Insufficient stock for " + id);
+                }
+            }
+        }
+
+        // Find low-stock products
+        int threshold = sc.nextInt();
+
+        System.out.println("Low Stock Products:");
+
+        for (Product p : map.values()) {
+            if (p.stock < threshold) {
+                System.out.println(p);
+            }
+        }
+
+        // Sort products by remaining stock
+        ArrayList<Product> list =
+            new ArrayList<>(map.values());
+
+        Collections.sort(list, (a, b) -> {
+            return Integer.compare(a.stock, b.stock);
+        });
+
+        System.out.println("Products Sorted by Stock:");
+
+        for (Product p : list) {
+            System.out.println(p);
+        }
+
+        // Search product by ID
+        int searchId = sc.nextInt();
+
+        System.out.println("Product Search:");
+
+        if (map.containsKey(searchId)) {
+            System.out.println(map.get(searchId));
+        } else {
+            System.out.println("Product not found");
+        }
+    }
+}
+Sample Input:
+4
+101 Laptop 10 50000
+102 Mouse 5 500
+103 Keyboard 8 1000
+104 Monitor 3 12000
+2
+101 4
+102 2
+5
+103
+
+
+Sample Output:
+Low Stock Products:
+102 Mouse 3 500.0
+104 Monitor 3 12000.0
+103 Keyboard 8 1000.0
+Products Sorted by Stock:
+102 Mouse 3 500.0
+104 Monitor 3 12000.0
+103 Keyboard 8 1000.0
+101 Laptop 6 50000.0
+Product Search:
+103 Keyboard 8 1000.0
