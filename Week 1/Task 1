@@ -1,23 +1,54 @@
-2.Access and print the element at the given index of an Array
-import java.util.Scanner;
+import java.util.*;
 
-public class Main {
+public class Solution {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
 
-        int[] arr = {10, 20, 30, 40, 50};
+        while (T-- > 0) {
+            int condition = sc.nextInt();
+            int num = sc.nextInt();
 
-        System.out.print("Enter index: ");
-        int index = sc.nextInt();
+            switch (condition) {
+                case 1:
+                    System.out.println(isOdd().test(num) ? "ODD" : "EVEN");
+                    break;
 
-        if (index >= 0 && index < arr.length) {
-            System.out.println(arr[index]);
-        } else {
-            System.out.println("Invalid index");
+                case 2:
+                    System.out.println(isPrime().test(num) ? "PRIME" : "COMPOSITE");
+                    break;
+
+                case 3:
+                    System.out.println(isPalindrome().test(num) ? "PALINDROME" : "NOT PALINDROME");
+                    break;
+            }
         }
-
         sc.close();
     }
+
+    static java.util.function.IntPredicate isOdd() {
+        return n -> n % 2 != 0;
+    }
+
+    static java.util.function.IntPredicate isPrime() {
+        return n -> {
+            if (n <= 1) return false;
+            for (int i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i == 0) return false;
+            }
+            return true;
+        };
+    }
+
+    static java.util.function.IntPredicate isPalindrome() {
+        return n -> {
+            int original = n, reverse = 0;
+            while (n > 0) {
+                reverse = reverse * 10 + n % 10;
+                n /= 10;
+            }
+            return original == reverse;
+        };
+    }
 }
-INPUT:ENTER INDEX 2
-OUTPUT:30
